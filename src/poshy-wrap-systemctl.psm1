@@ -93,8 +93,10 @@ function $systemwide_impl_function_name {
 $systemwide_impl `@args
 }"
         Invoke-Expression $user_impl_function_definition
+        Export-ModuleMember -Function $systemwide_impl_function_name
     }
     Set-Alias -Name $systemwide_alias_name -Value $systemwide_impl_function_name -Option AllScope
+    Export-ModuleMember -Alias $systemwide_alias_name
 
     # User
     if (-not (Test-Path function:$user_impl_function_name)) {
@@ -103,8 +105,10 @@ function $user_impl_function_name {
 $user_impl_body `@args
 }"
         Invoke-Expression $user_impl_function_definition
+        Export-ModuleMember -Function $user_impl_function_name
     }
     Set-Alias -Name $user_alias_name -Value $user_impl_function_name -Option AllScope
+    Export-ModuleMember -Alias $user_alias_name
 }
 
 foreach ($c in $sudo_commands) {
@@ -126,8 +130,10 @@ function $systemwide_impl_function_name {
 $systemwide_impl `@args
 }"
         Invoke-Expression $user_impl_function_definition
+        Export-ModuleMember -Function $systemwide_impl_function_name
     }
     Set-Alias -Name $systemwide_alias_name -Value $systemwide_impl_function_name -Option AllScope
+    Export-ModuleMember -Alias $systemwide_alias_name
 
     # User
     if (-not (Test-Path function:$user_impl_function_name)) {
@@ -136,8 +142,10 @@ function $user_impl_function_name {
 $user_impl_body `@args
 }"
         Invoke-Expression $user_impl_function_definition
+        Export-ModuleMember -Function $user_impl_function_name
     }
     Set-Alias -Name $user_alias_name -Value $user_impl_function_name -Option AllScope
+    Export-ModuleMember -Alias $user_alias_name
 }
 
 foreach ($c in $power_commands) {
@@ -153,40 +161,39 @@ function $systemwide_impl_function_name {
 $systemwide_impl `@args
 }"
         Invoke-Expression $user_impl_function_definition
+        Export-ModuleMember -Function $systemwide_impl_function_name
     }
     Set-Alias -Name $systemwide_alias_name -Value $systemwide_impl_function_name -Option AllScope
+    Export-ModuleMember -Alias $systemwide_alias_name
 }
 
 # --now commands
 function sc-enable-now {
     sc-enable --now @args
 }
-Set-Alias -Name sc-enable-now -Value sc-enable-now
+Export-ModuleMember -Function sc-enable-now
 
 function sc-disable-now {
     sc-disable --now @args
 }
-Set-Alias -Name sc-disable-now -Value sc-disable-now
+Export-ModuleMember -Function sc-disable-now
 
 function sc-mask-now {
     sc-mask --now @args
 }
-Set-Alias -Name sc-mask-now -Value sc-mask-now
+Export-ModuleMember -Function sc-mask-now
 
 function scu-enable-now {
     scu-enable --now @args
 }
-Set-Alias -Name scu-enable-now -Value scu-enable-now
+Export-ModuleMember -Function scu-enable-now
 
 function scu-disable-now {
     scu-disable --now @args
 }
-Set-Alias -Name scu-disable-now -Value scu-disable-now
+Export-ModuleMember -Function scu-disable-now
 
 function scu-mask-now {
     scu-mask --now @args
 }
-Set-Alias -Name scu-mask-now -Value scu-mask-now
-
-
-Export-ModuleMember -Function * -Alias *
+Export-ModuleMember -Function scu-mask-now
